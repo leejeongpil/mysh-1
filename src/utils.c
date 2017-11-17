@@ -1,8 +1,9 @@
 #include "utils.h"
-
+#include "signal_handlers.h"
 #define _GNU_SOURCE
 #include <stdlib.h>
 #include <string.h>
+#include <signal.h>
 
 void mysh_parse_command(const char* command,
                         int* n_commands,
@@ -10,7 +11,29 @@ void mysh_parse_command(const char* command,
 {
   char buf[4096];
   strcpy(buf, command);
-
+//printf("%s\n",buf[0]);
+//printf("%c\n",buf[0]);
+//printf("%s\n",buf);
+//printf("%c\n",buf);
+//signal(SIGINT, (void *)catch_sigint);
+//signal(SIGTSTP, (void *)catch_sigtstp); 
+/*
+  if((strncmp(buf,"/bin",4))!=0){
+    strcpy(buf, "/bin/");
+    strcat(buf, command);
+    if((strncmp(buf,"/bin/^C",7))==0){
+      memset(buf,NULL,4096);
+      strcpy(buf, command);
+    } else if((strncmp(buf,"/bin/^Z",7))==0){
+      memset(buf,NULL,4096);
+      strcpy(buf, command);
+    } else if((strncmp(buf,"/bin/exit",9))==0){
+      memset(buf,NULL,4096);
+      strcpy(buf, command);
+    }
+  }
+*/
+  
   char *saveptr = NULL;
   char *tok = strtok_r(buf, "|", &saveptr);
 
@@ -60,4 +83,11 @@ void parse_single_command(const char* command,
     (*argv)[0] = (char*)malloc(1);
     (*argv)[0][0] = '\0';
   }
+/*
+  if((strcmp(argv[0][0],"/bin"))!=0){
+    buf[0]="/bin";
+    strcat(buf, argv);
+    strcpy(argv, buf);
+  }
+*/
 }

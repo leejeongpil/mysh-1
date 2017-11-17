@@ -40,7 +40,26 @@ int do_fg(int argc, char** argv) {
 
   return 0;
 }
+/*
+int do_cat(int argc, char** argv) {
+  if (!validate_cat_argv(argc, argv))
+    return -1;
 
+  // TODO: Fill this.
+
+  return 0;
+}
+
+
+int do_ls(int argc, char** argv) {
+  if (!validate_ls_argv(argc, argv))
+    return -1;
+
+  // TODO: Fill this.
+
+  return 0;
+}
+*/
 int validate_cd_argv(int argc, char** argv) {
   if (argc != 2) return 0;
   if (strcmp(argv[0], "cd") != 0) return 0;
@@ -66,3 +85,18 @@ int validate_fg_argv(int argc, char** argv) {
   
   return 1;
 }
+/*
+int validate_cat_argv(int argc, char** argv) {
+  if (argc != 1) return 0;//when empty
+  if (strcmp(argv[0], "cat") != 0) return 0;//cat is not start
+  
+  return 1;//when normal
+}
+
+int validate_ls_argv(int argc, char** argv) {
+  if (argc != 1) return 0;
+  if (strcmp(argv[0], "ls") != 0) return 0;
+
+  return 1;
+}
+*/
